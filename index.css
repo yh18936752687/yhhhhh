@@ -354,25 +354,25 @@ a{
 }
 
 .back-top .fixed-1{
-  background: url("../img/fixed.png") no-repeat center;
+  background: url("img/fixed.png") no-repeat center;
   background-size: 30px;
   height: 30px;
 }
 
 .back-top .fixed-2{
-  background: url("../img/erji.png") no-repeat center;
+  background: url("img/erji.png") no-repeat center;
   background-size: 30px;
   height: 30px;
 }
    
 .back-top .fixed-3{
-  background: url("../img/shopping_cart.png") no-repeat center;
+  background: url("img/shopping_cart.png") no-repeat center;
   background-size: 30px;
   height:30px ;
 }
 
 .back-top .fixed-4{
-  background: url("../img/back_top.png") no-repeat center;
+  background: url("img/back_top.png") no-repeat center;
   background-size: 30px;
   height:30px ;
 }
