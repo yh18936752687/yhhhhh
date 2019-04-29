@@ -1,0 +1,29 @@
+create database student
+use student
+create table 学生表
+(学号 char(8) not null primary key,
+姓名 char(8) not null,
+性别 bit,
+出生日期 smalldatetime,
+班级 varchar(20)
+)
+create table 教师表
+(工号 char(4) not null primary key,
+姓名 char(8) not null,
+性别 bit,
+学历 varchar(10) check(学历='专科'or 学历='本科'or 学历='硕士研究生'or 学历='博士研究生'),
+职称 varchar(8) check(职称='助理讲师' or 职称='讲师' or 职称='副教授' or 职称='教授') default('讲师'),
+)
+create table 课程表
+(课程号 tinyint not null primary key,
+课程名 varchar(40) unique,
+学时 tinyint check(学时>=36 and 学时<=80),
+学分 decimal(3,1) check(学分>=1.0 and 学分<=4.0),
+授课教师 char(4) foreign key references 教师表(工号)
+)
+create table 选课表
+(课程号 tinyint foreign key references 课程表(课程号),
+学号 char(8) foreign key references 学生表(学号),
+成绩 tinyint  check(成绩>=0 and 成绩<=100),
+primary key (课程号,学号)
+)
