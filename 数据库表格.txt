@@ -1,0 +1,93 @@
+create database 网上书店
+use 网上书店
+create table 会员表
+(
+会员编号 char(4) not null primary key,
+会员昵称 varchar(20),
+Email varchar(20),
+联系电话 varchar(18),
+积分 int 
+)
+create table 图书类别表
+(
+类别编号 int not null primary key,
+类别名称 varchar(16)
+)
+create table 图书表
+(
+图书编号 int not null primary key,
+图书名称 varchar(50) not null,
+作者 char(8),
+价格 smallmoney,
+出版社 varchar(50),
+折扣 smallmoney ,
+图书类别 int foreign key references 图书类别表(类别编号)
+)
+
+alter table 图书表
+add  constraint   ck_图书表_折扣 check(折扣<价格)
+
+
+
+
+
+
+create table 订购表
+(
+图书编号 int not null,
+会员编号 char(4) not null,
+订购量 int default(1),
+订购日期 datetime,
+发货日期 datetime 
+)
+
+alter table 订购表
+add  constraint   ck_订购表_发货日期 check(订购日期<=发货日期)
+
+
+drop table 图书表
+drop  table  图书类别表
+
+drop  table  会员表
+drop table  订购表
+
+select * from 会员表
+
+alter table 会员表
+add 联系地址 varchar(50)
+
+sp_rename   '会员表.联系地址','联系方式'
+
+alter table 会员表
+drop column 联系方式
+
+insert 会员表
+values('1001','何仙姑','Hxg18@163.com','13320101991',20)
+
+insert 会员表
+values('1002','平平人生','Lp001@126.com','13545158219',300)
+
+insert 图书表
+values(1,'时代中国','师永刚',39,'作家出版社',27.8,1)
+
+insert 图书表
+values (2,'中国历史的屈辱','王重旭','26','华夏出版社',18.2,2)
+
+insert 图书类别表
+values '1,'历史')
+
+insert 图书类别表
+values (2,'家教')
+
+
+insert 订购表
+values('1001','1','2','2012-3-12','2013-1-1')
+
+insert 订购表
+values('1001','3','1','2012-9-15','2013-1-1')
+
+
+update   会员表  set  会员昵称='何大谷'  where  会员编号='1001'
+update   订购表  set   订购量=10,订购日期='2012-10-01',发货日期='2012-10-02' where  会员编号=1  and 图书编号='1001'
+
+
